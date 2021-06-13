@@ -1,24 +1,39 @@
-# README
+# Passwordless Authentication API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Sample Rails applications for demonstrating many ways SQL can be injected in Rails.
 
-Things you may want to cover:
+* Ruby version: 2.7.1
 
-* Ruby version
+* Rails version: 6.1.3
 
-* System dependencies
+## Installation/Setup
 
-* Configuration
+1. Clone the application on your local
 
-* Database creation
+```
+git clone https://github.com/sampatbadhe/passwordless-authentication-api.git
+```
 
-* Database initialization
+2. cd to the `passwordless-authentication-api` application directory
 
-* How to run the test suite
+```
+  cd passwordless-authentication-api
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+3. Run `bundle` command to install all gems
 
-* Deployment instructions
+```
+  bundle install
+```
 
-* ...
+4. Configure your `database.yml` file.
+
+5. Run `bundle exec rails db:create`
+
+6. Run `bundle exec rails db:migrate`
+
+7. Run `bundle exec rails db:seed`. The sample data would be then loaded into application database.
+
+8. Run the rails server using `bundle exec rails server` or `bundle exec rails s`
+
+
