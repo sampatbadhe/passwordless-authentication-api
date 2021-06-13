@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       post 'authentication/create'
       post 'sessions/create'
+
+      resources :contracts, only: [:index, :show]
     end
   end
 end
