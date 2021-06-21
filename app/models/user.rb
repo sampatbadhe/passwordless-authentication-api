@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   # generates login token to authorize user
   def generate_login_token
-    # create a login_token and set it up to expiry in 60 minutes
+    # create a login_token and set it up to expire in 60 minutes
     payload = {
       email: email,
       exp: 1.hour.from_now.to_i
@@ -25,7 +25,7 @@ class User < ApplicationRecord
     save!
   end
 
-  # returns the login_link which is to be included in the email
+  # returns the magic-link which is to be included in the email
   def login_link
     Rails.application.routes.url_helpers.api_v1_sessions_create_url(login_token: login_token, host: 'localhost:3000')
   end
