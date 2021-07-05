@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_04_105417) do
+ActiveRecord::Schema.define(version: 2021_07_05_162328) do
 
   create_table "contracts", force: :cascade do |t|
     t.string "title"
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 2021_06_04_105417) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "login_token"
     t.datetime "login_token_verified_at"
+    t.datetime "login_token_sent_at"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
