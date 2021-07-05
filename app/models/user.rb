@@ -8,31 +8,33 @@ class User < ApplicationRecord
     presence: true
 
   def send_magic_link
-    generate_login_token
-
-    UserMailer.magic_link(self, login_link).deliver_now
+    login_token = generate_login_token
+    save!
+    UserMailer.magic_link(self, login_link(login_token)).deliver_now
   end
 
   # generates login token to authorize user
   def generate_login_token
+    # set login_token_sent_at to validate last sent login token
+    self.login_token_sent_at = Time.current
+
     # create a login_token and set it up to expire in 60 minutes
     payload = {
       email: email,
-      exp: 1.hour.from_now.to_i
+      exp: 1.hour.from_now.to_i,
+      login_token_sent_at: login_token_sent_at
     }
-    # set login_token to validate last sent login token
-    self.login_token = generate_token(payload)
-    save!
+    generate_token(payload)
   end
 
   # returns the magic-link which is to be included in the email
-  def login_link
+  def login_link(login_token)
     Rails.application.routes.url_helpers.api_v1_sessions_create_url(login_token: login_token, host: 'localhost:3000')
   end
 
   # generates auth token to authenticate the further request once user is authorized
   def generate_auth_token
-    self.login_token = nil
+    self.login_token_sent_at = nil
     self.login_token_verified_at = Time.now
     self.save
 
