@@ -1,6 +1,6 @@
 # Passwordless Authentication API
 
-Sample Rails applications for demonstrating many ways SQL can be injected in Rails.
+Sample Rails applications for demonstrating [Implement Passwordless Authentication via Magic Link in Rails API](https://blog.kiprosh.com/implement-passwordless-authentication-via-magic-link-in-rails-api/)
 
 * Ruby version: 2.7.1
 
