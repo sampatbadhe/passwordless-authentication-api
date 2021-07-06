@@ -9,10 +9,10 @@ class Api::V1::SessionsController < ApplicationController
       if user && user.login_token_sent_at.to_s == decoded_token['login_token_sent_at']
         render json: { auth_token: user.generate_auth_token }
       else
-        render json: { error: 'Invalid Request' }, status: :unauthorized
+        render_invalid_authentication
       end
     else
-      render json: { error: 'Invalid Request' }, status: :unauthorized
+      render_invalid_authentication
     end
   end
 end
