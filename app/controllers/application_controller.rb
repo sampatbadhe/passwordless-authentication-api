@@ -15,8 +15,6 @@ class ApplicationController < ActionController::API
     render_invalid_authentication if @current_user.login_token_verified_at.to_s != payload['login_token_verified_at']
   end
 
-  private
-
   # Deconstructs the Authorization header and decodes the JWT token.
   def payload
     auth_header = request.headers['Authorization']
